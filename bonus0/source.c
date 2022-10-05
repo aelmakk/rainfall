@@ -1,15 +1,15 @@
 
-void p(char *param_1,char *separator) /* separator " - " */
+void p(char *str,char *separator) /* separator " - " */
 
 {
-  char *pcVar1;
-  char local_100c [4104];
+  char *nl_locator;
+  char buff [4104];
   
   puts(separator);
-  read(0,local_100c,0x1000);
-  pcVar1 = strchr(local_100c,'\n');
-  *pcVar1 = '\0';
-  strncpy(param_1,local_100c,0x14);
+  read(0, buff, 4096);
+  nl_locator = strchr(buff,'\n'); /* locate the first occurence of \n in buff, return a pointer to located char or NULL*/
+  *nl_locator = '\0';
+  strncpy(str, buff, 20);
   return;
 }
 
@@ -24,8 +24,8 @@ void pp(char *param_1)
   char local_20 [20];
   
   bVar4 = 0;
-  p(local_34,&DAT_080486a0);
-  p(local_20,&DAT_080486a0);
+  p(local_34, " - ");
+  p(local_20, " - ");
   strcpy(param_1,local_34);
   uVar2 = 0xffffffff;
   pcVar3 = param_1;
