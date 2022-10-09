@@ -53,3 +53,10 @@
    0x08048522 <+158>:	call   0x8048390 <puts@plt>
    0x08048527 <+163>:	leave
    0x08048528 <+164>:	ret
+
+
+
+
+
+The STOS instruction copies the data item from AL (for bytes - STOSB), AX (for words - STOSW)
+or EAX (for doublewords - STOSD) to the destination string, pointed to by ES:DI in memory.

@@ -1,34 +1,19 @@
-void greetuser(void)
-
+void greetuser(char *str)
 {
-  undefined4 local_4c;
-  undefined4 local_48;
-  undefined4 local_44;
-  undefined4 local_40;
-  undefined2 local_3c;
-  undefined local_3a;
-  
-  if (language == 1) {
-    local_4c = 0xc3767948;
-    local_48 = 0x20a4c3a4;
-    local_44 = 0x69a4c370;
-    local_40 = 0xc3a4c376;
-    local_3c = 0x20a4;
-    local_3a = 0;
-  }
-  else if (language == 2) {
-    local_4c = 0x64656f47;
-    local_48 = 0x64696d65;
-    local_44 = 0x21676164;
-    local_40 = CONCAT22(local_40._2_2_,0x20);
-  }
-  else if (language == 0) {
-    local_4c = 0x6c6c6548;
-    local_48 = CONCAT13(local_48._3_1_,0x206f);
-  }
-  strcat((char *)&local_4c,&stack0x00000004);
-  puts((char *)&local_4c);
-  return;
+    char msg[];
+    
+    if (language == 1) {
+          msg = "Hyvää päivää "; // good day
+    }
+    else if (language == 2) {
+          msg = "Goedemiddag! "; //good afternoon
+    }
+    else if (language == 0) {
+          msg = "Hello "
+    }
+    strcat(msg, str); // str is equal ebp +8 , argv[1]
+    puts(msg);
+    return;
 }
 
 int     main(int argc, char *argv[])
@@ -39,7 +24,7 @@ int     main(int argc, char *argv[])
     undefined4 *puVar4;
     bool flag;
     undefined4 buff1 [10];
-    char acStack56 [36];
+    char *buff2 [36];
     char *lang;
 
     flag = 0;
@@ -67,7 +52,7 @@ int     main(int argc, char *argv[])
           ptr = ptr + flag * -2 + 1;
           puVar4 = puVar4 + flag * -2 + 1;
         }
-        ret = greetuser();
+        ret = greetuser(argv[1]);
     }
     else
         ret = 1;
