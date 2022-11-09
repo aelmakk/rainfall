@@ -1,4 +1,3 @@
 * running gdb i noticed a cmp between the result of atoi and the value 432
 * tried 423 as arg to level0 file and got a shell 
-* run a whoami command, returned level1, means i got a reverse shell
 * lastely i run cat /home/user/level1/.pass , and got the flag
