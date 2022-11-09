@@ -6,15 +6,17 @@ int main(int argc, char **argv)
 {
     int value;
     char *bin_sh;
+    unsigned int uid;
+    unsigned int gid;
+
     value = atoi(argv[1]);
     if (value != 423)
     {
         bin_sh = strdup("/bin/sh");
-        0;
-        getegid();
-        geteuid();
-        setresgid();
-        setresuid();
+        gid = getegid();
+        uid = geteuid();
+        setresgid(gid, gid, gid);
+        setresuid(uid, uid, uid);
         execv("/bin/sh", bin_sh);
     }
     else
