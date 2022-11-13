@@ -17,7 +17,7 @@ int main(int argc, char **argv)
         uid = geteuid();
         setresgid(gid, gid, gid);
         setresuid(uid, uid, uid);
-        execv("/bin/sh", bin_sh);
+        execv("/bin/sh", &bin_sh);
     }
     else
         fwrite("No !\n", 0x1, 0x5, stderr);

@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+void p(void)
+{
+  unsigned int return_addr;
+  char buff [76];
+  
+  fflush(stdout);
+  gets(buff);
+  if ((return_addr & 0xb0000000) == 0xb0000000) {
+    printf("(%p)\n", return_addr);
+    exit(1);
+  }
+  puts(buff);
+  strdup(buff);
+  return ;
+}
+
+int main(int argc, char *argv[])
+{
+    p();
+    return (0);
+}
