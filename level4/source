@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+void p(char *buff)
+{
+  printf(buff);
+  return;
+}
+
+void n(void)
+{
+  char buff[512];
+  
+  fgets(buff, 512, stdin);
+  p(buff);
+  if (m == 0x1025544) {
+    system("/bin/cat /home/user/level5/.pass");
+  }
+  return;
+}
+
+int main()
+{
+    n();
+    return (0);
+}
