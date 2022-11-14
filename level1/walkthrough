@@ -1,7 +1,4 @@
-create this python exploit wich add the address of run function to str wich will be passed later to the excutable 
-str = "0123456789012345678901234567890123456789012345678901234567890123456789012345"
-str += "\x44\x84\x04\x08"
-print str
-
-## Command:
-(python PATH_TO_OUR EXPLOIT ; cat) | ./level1
+* In this level1 , we aim to explore simple stack buffer overflow.
+* as usual i used gdb to examine the memory.
+* from reading the assembly there a call to get function, which enable as to write arbitrary data into the memory , 
+    the goal here is to overwrite the return address of the main function with the address of the function run 
