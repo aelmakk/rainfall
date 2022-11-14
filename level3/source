@@ -1,11 +1,12 @@
-#inlcude <stdio.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 
+int m;
 
 void    v()
 {
-    char buff[];
+    char buff[512];
 
     fgets(buff, 512, stdin);
     printf(buff);
