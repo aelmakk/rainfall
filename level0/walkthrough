@@ -1,3 +1,9 @@
-* running gdb i noticed a cmp between the result of atoi and the value 432
+* In this level0 we are dealing with a 32-bit executable  
+* I used gdb to explore the memory : 
+
+* first the program compare the first argument passed to the program with the value 423.
+* if the value is different the program prints "No !\n", and return .
+* othewise if the first argument is equal to 423, it calls geteuid and geteuid, then set  the EUID and EGID
+* call the function execv with /bin/sh as a parameter which gives shell with level1 permission since the setuid bit is set .
 * tried 423 as arg to level0 file and got a shell 
 * i run cat /home/user/level1/.pass , and got the flag
