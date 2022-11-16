@@ -1,0 +1,24 @@
+#include <unistd.h>
+#include <stdio.h>
+
+void    o()
+{
+    system("/bin/sh");
+    exit(1);
+}
+
+void    n()
+{
+    char buff[250];
+
+    fgets(buff, 250, stdin);
+    printf(buff);
+    exit(1);
+}
+
+
+int main()
+{
+    n();
+    return (0);
+}
