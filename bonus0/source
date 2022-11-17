@@ -1,6 +1,5 @@
 
 void p(char *str,char *separator) /* separator " - " */
-
 {
   char *nl_locator;
   char buff [4104];
@@ -18,7 +17,7 @@ void pp(char *buff)
   char          cVar1;
   unsigned int  cpt;
   // int           flag;
-  char          *p;
+  // char          *p;
   char          str1 [20];
   char          str2 [20];
   
@@ -26,21 +25,10 @@ void pp(char *buff)
   p(str1, " - ");
   p(str2, " - ");
   strcpy(buff, str1);
-  cpt = UINT_MAX;
-  p = buff;
-  do {
-    if (cpt == 0)
-      break;
-    cpt --;
-    cVar1 = *p;
-    p += 1;
-  } while (cVar1 != '\0');
-  *(undefined2 *)(buff + (~cpt - 1)) = ' ';
+  buff[strlen(buff)] = ' ';
   strcat(buff,str2);
   return;
 }
-
-
 
 int main(void)
 {
@@ -50,11 +38,3 @@ int main(void)
   puts(buff);
   return 0;
 }
-
-
-str1 = "AAAABBBBCCCCDDDDEEEE"  20 + 9 + shellcode
-str2 = "IIIIJJJJKAAAALLLMMMMNNNNOOOOPPPPQQQQ"
-
-AAAAAAAAAAAAAAAAAAAABBBBBBBBBBBB BBBBBBBBBBBB
-
-BBBBBBBBBBBBBBBBBBB
