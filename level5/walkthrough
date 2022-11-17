@@ -8,7 +8,7 @@ what is got ??
 most programs don't include every function they use to reduce binary size. Instead,
 common functions (like those in libc) are "linked" into the program so they can be saved once on disk and reused by every program.
 
-* the following code is used to pwn level5:
+* the following code i used to pwn level5:
 ----------------------------------------
 import struct
 

@@ -1,5 +1,5 @@
 
-void __thiscall N::N(N *this,int param_1)
+void  N::N(N *this,int param_1)
 
 {
   *(undefined ***)this = &PTR_operator+_08048848;
@@ -41,20 +41,20 @@ void __thiscall N::setAnnotation(N *this,char *str)
 
 
 
-void main(int argc,int param_2)
+int   main(int argc, char *argv)
 
 {
-  N *this;
-  undefined4 *this_00;
-  
-  if (argc < 2) {
-    exit(1);
-  }
-  this = (N *)new(108);
-  N::N(5);
-  this_00 = (undefined4 *)new(108);
-  N::N(6);
-  N::setAnnotation(this,*(char **)(param_2 + 4));
-  (**(code **)*this_00)(this_00,this);
-  return;
+    N *this;
+    undefined4 *this_00;
+
+    if (argc < 2) {
+      exit(1);
+    }
+    this = (N *)new(108);
+    N::N(5);
+    this_00 = (undefined4 *)new(108);
+    N::N(6);
+    N::setAnnotation(this,*(char **)(param_2 + 4));
+    (**(code **)*this_00)(this_00,this);
+    return (0);
 }
