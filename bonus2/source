@@ -1,6 +1,11 @@
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
 void greetuser(char *str)
 {
     char msg[];
+    int language;
     
     if (language == 1) {
           msg = "Hyvää päivää "; // good day
@@ -11,17 +16,15 @@ void greetuser(char *str)
     else if (language == 0) {
           msg = "Hello "
     }
-    strcat(msg, str); // str is equal ebp +8 , argv[1]
+    strcat(msg, str); // str is at ebp +8 , argv[1]
     puts(msg);
     return;
 }
 
 int     main(int argc, char *argv[])
 {
-    int ret;
-    int count;
     void *ptr;
-    undefined4 *puVar4;
+    char buff3[76];
     bool flag;
     undefined4 buff1 [10];
     char *buff2 [36];
@@ -31,11 +34,7 @@ int     main(int argc, char *argv[])
     if (argc == 3)
     {
         ptr = buff1;
-        for (count = 19; count != 0; i--)        /* put zeros on buff1 count=19 time */
-        {
-          *ptr = 0;
-          ptr = ptr + 1;
-        }
+        bzero(buff, 76);
         strncpy(buff1, argv[1], 40);
         strncpy(buff2, argv[2], 32);
         lang = getenv("LANG");
@@ -54,7 +53,6 @@ int     main(int argc, char *argv[])
         }
         ret = greetuser(argv[1]);
     }
-    else
-        ret = 1;
-    return (ret);
+
+    return (0);
 }
