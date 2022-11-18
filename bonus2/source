@@ -2,19 +2,21 @@
 #include <string.h>
 #include <unistd.h>
 
-void greetuser(char *str)
+int language;
+
+
+void greetuser(char *str) // str ==> argv[1]
 {
-    char msg[];
-    int language;
+    char msg[32];
     
     if (language == 1) {
-          msg = "Hyvää päivää "; // good day
+      memcpy(msg, "Hyvää päivää ", 18); // good day
     }
     else if (language == 2) {
-          msg = "Goedemiddag! "; //good afternoon
+      memcpy(msg, "Goedemiddag! ", 13); //good afternoon
     }
     else if (language == 0) {
-          msg = "Hello "
+      memcpy(msg, "Hello ", 6); 
     }
     strcat(msg, str); // str is at ebp +8 , argv[1]
     puts(msg);
@@ -23,18 +25,18 @@ void greetuser(char *str)
 
 int     main(int argc, char *argv[])
 {
-    void *ptr;
-    char buff3[76];
-    bool flag;
-    undefined4 buff1 [10];
-    char *buff2 [36];
     char *lang;
+    void *ptr;
+    int flag;
+    char stack_buff[80];
+    char buff1 [40];
+    char buff2 [32];
 
     flag = 0;
     if (argc == 3)
     {
-        ptr = buff1;
-        bzero(buff, 76);
+        ptr = /.,mn;
+        bzero(buff1, 19 * 4);
         strncpy(buff1, argv[1], 40);
         strncpy(buff2, argv[2], 32);
         lang = getenv("LANG");
@@ -44,14 +46,8 @@ int     main(int argc, char *argv[])
             else if (memcmp(lang, "nl", 2) == 0)
                 language = 2;
         }
-        ptr = buff1;
-        puVar4 = (undefined4 *)&stack0xffffff50;
-        for (count = 0x13; iVar2 != 0; iVar2 = iVar2 + -1) {
-          *puVar4 = *ptr;
-          ptr = ptr + flag * -2 + 1;
-          puVar4 = puVar4 + flag * -2 + 1;
-        }
-        ret = greetuser(argv[1]);
+        // copy the buff1,buff2 in stack_buff
+        greetuser(buff1);
     }
 
     return (0);
