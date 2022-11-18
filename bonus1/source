@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+
+
+int     main(int argc, char *argv[])
+{
+    int nbr;
+    char buff[40];
+    int  flag;
+    int  tmp;
+
+
+    nbr = atoi(argv[1]);
+    if (nbr <= 9)
+    {
+        tmp = nbr * 4;
+        memcpy(buff, argv[2], tmp);
+        if (flag == 0x574f4c46) // 1464814662
+        {
+            execl("/bin/sh", "sh", 0);
+        }
+    }
+    return (0);
+}
