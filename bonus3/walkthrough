@@ -1,0 +1,5 @@
+* In this level we are provided with a binary wich expect an argument. 
+* after opening and reading the content of "/home/user/end/.pass" , the program stores the content into the buffer . 
+* then calls atoi(argv[1]) , and put a terminated string at position buff + atoi(argv[1]).
+* after that it compare the content at buffer with argv[1] . if the strings are equal it open a shell otherwise it prints (buff + 66), which is expected to be newline.
+* to solve this challenge i thought of giving the program an empty string as the first argument which will trigger the program to put a string terminitor at the begining of buffer (buffer + 0), so strcmp will return 0 (comparaison between two empty strings), this will open a shell , we can now cat /home/user/end/.pass to get the flag .
