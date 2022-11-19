@@ -2,7 +2,27 @@
 #include <stdio.h>
 #include <unistd.h>
 
+
 int     main(int argc, char *argv[])
+
 {
-    return (0);
+  undefined4 *puVar1;
+  void *pvVar2;
+  undefined4 *puVar3;
+  FILE *file_ptr;
+  
+  puVar1 = malloc(8);
+  *puVar1 = 1;
+  pvVar2 = malloc(8);
+  puVar1[1] = pvVar2;
+  puVar3 = (undefined4 *)malloc(8);
+  *puVar3 = 2;
+  pvVar2 = malloc(8);
+  puVar3[1] = pvVar2;
+  strcpy((char *)puVar1[1], argv[1]);
+  strcpy((char *)puVar3[1], argv[2]);
+  file_ptr = fopen("/home/user/level8/.pass","r");
+  fgets(c, 0x44, file_ptr);
+  puts("~~");
+  return (0);
 }
