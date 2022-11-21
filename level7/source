@@ -2,25 +2,25 @@
 #include <stdio.h>
 #include <unistd.h>
 
+char c[0x44];
 
 int     main(int argc, char *argv[])
-
 {
-  undefined4 *puVar1;
-  void *pvVar2;
-  undefined4 *puVar3;
+  void *ptr1;
+  char *tmp_ptr;
+  void *ptr3;
   FILE *file_ptr;
   
-  puVar1 = malloc(8);
-  *puVar1 = 1;
-  pvVar2 = malloc(8);
-  puVar1[1] = pvVar2;
-  puVar3 = (undefined4 *)malloc(8);
-  *puVar3 = 2;
-  pvVar2 = malloc(8);
-  puVar3[1] = pvVar2;
-  strcpy((char *)puVar1[1], argv[1]);
-  strcpy((char *)puVar3[1], argv[2]);
+  ptr1 = malloc(8);
+  *ptr1 = 1;
+  tmp_ptr = (char *)malloc(8);
+  *(ptr1 + 4) = tmp_ptr;
+  ptr3 = malloc(8);
+  *ptr3 = 2;
+  tmp_ptr = (char *)malloc(8);
+  (char *)(ptr3 + 4) = tmp_ptr;
+  strcpy((char *)(ptr1 + 4), argv[1]);
+  strcpy((char *)(ptr3 + 4), argv[2]);
   file_ptr = fopen("/home/user/level8/.pass","r");
   fgets(c, 0x44, file_ptr);
   puts("~~");
