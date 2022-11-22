@@ -18,13 +18,13 @@ int     main(int argc, char *argv[])
   FILE *file_ptr;
   
   ptr1 = malloc(8);
-  *((int *)ptr1) = 1;
+  *(ptr1) = 1;
   tmp_ptr = (char *)malloc(8);
-  *((char *)ptr1 + 4) = tmp_ptr;
+  *(ptr1 + 4) = (char *) tmp_ptr;
   ptr3 = malloc(8);
-  *(int *)ptr3 = 2;
+  *(ptr3) = 2;
   tmp_ptr = (char *)malloc(8);
-  *(char *)(ptr3 + 4) = tmp_ptr;
+  *(ptr3 + 4) = tmp_ptr;
   strcpy((char *)(ptr1 + 4), argv[1]);
   strcpy((char *)(ptr3 + 4), argv[2]);
   file_ptr = fopen("/home/user/level8/.pass","r");
