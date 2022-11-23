@@ -1,3 +1,11 @@
-0x8049ab0, %ecx
-0x8049aac, %edx
-===> those two addresses get passed as arguments to printf (initially they are NULL)
+* In this level8 the program start by printing two pointers auth, service
+* than reads 128  bytes from the user , and checks whether it start with one of the bellow command:
+* "auth ": in this case the program ccpy using strcpy() the remaining of buff (buff + 5) to the allocated memory .
+* "reset" : it frees the auth struct.
+* "service" : it dumplicate the remaining of buff (buff + 7) .
+* "login": if buff start with login it checks if the memory address at auth + 32 is zero (if yes it asks for a password , if not it calls system("/bin/sh")).
+
+==> the goal is to change the memory address at (auth + 32 ) to do that :
+* auth AAAA
+* service {AAAAAAAAAAAAAAAAAAAAAAAAAAAA} to change the memory at (auth + 32)
+* login , amazing we got a shell

@@ -8,12 +8,9 @@ struct auth{
     int flag;
 };
 
-struct service{
-  char *service_name;
-};
+char *service;
 
 struct auth *auth;
-struct service *service;
 
 
 int main(void)
@@ -24,7 +21,7 @@ int main(void)
     printf("%p, %p \n", auth, service);
     fgets(buff, 128, stdin);
     if (!buff) {
-      return 0;
+        return 0;
     }
     if (!strncmp(buff, "auth ", 5))
     {
@@ -38,7 +35,7 @@ int main(void)
         free(auth);
  
     if (!strncmp(buff, "service", 6))
-      service->service_name = strdup(buff + 7);
+        service = strdup(buff + 7);
 
     if (!strncmp(buff, "login", 5)) {
         if (auth->flag == 0)
