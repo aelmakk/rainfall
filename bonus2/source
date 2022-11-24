@@ -5,7 +5,7 @@
 int language;
 
 
-void greetuser(char *str) // str ==> argv[1]
+void greetuser(char *name) // str ==> argv[1]
 {
     char msg[32];
     
@@ -18,7 +18,8 @@ void greetuser(char *str) // str ==> argv[1]
     else if (language == 0) {
       memcpy(msg, "Hello ", 6); 
     }
-    strcat(msg, str); // str is at ebp +8 , argv[1]
+    // it excpect an argument even if its not passed directly by the collee 
+    strcat(msg, name); // str is at ebp +8 , argv[1]
     puts(msg);
     return;
 }
@@ -35,7 +36,6 @@ int     main(int argc, char *argv[])
     flag = 0;
     if (argc == 3)
     {
-        ptr = /.,mn;
         bzero(buff1, 19 * 4);
         strncpy(buff1, argv[1], 40);
         strncpy(buff2, argv[2], 32);
@@ -47,7 +47,7 @@ int     main(int argc, char *argv[])
                 language = 2;
         }
         // copy the buff1,buff2 in stack_buff
-        greetuser(buff1);
+        greetuser();
     }
 
     return (0);

