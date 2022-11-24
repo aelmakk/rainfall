@@ -7,5 +7,5 @@
 
 ==> the goal is to change the memory address at (auth + 32 ) to do that :
 * auth AAAA
-* service {AAAAAAAAAAAAAAAAAAAAAAAAAAAA} to change the memory at (auth + 32)
-* login , amazing we got a shell
+* service AAAAAAAAAAAAAAAAAAAAAAAAAAAA // to change the memory at (auth + 32)
+* login // amazing we got a shell
